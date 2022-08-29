@@ -20,8 +20,7 @@
                       </div>
                   </div>
                 <hr>
-				  <p><strong>Create 2D array : </strong>arr = [[0]*cols]*rows <strong> => arr = [0*4]*4</strong></p>
-                  <p><strong>TODO Update not working with init</strong>arr[2][1] = 7</p>
+				  <p><strong>Create 2D array : </strong>arr = [[0]*cols for _ in range(len(arr))] <strong> => arr = [[0]*4 for _ in range(5)]</strong></p>
                   <p><strong>Update array element : </strong>arr[2][1] = 7</p>
                   <p><strong>Get array element : </strong>element = arr[2][1]</p>
                   <p><strong>Get total rows count : </strong>len(arr)</p>

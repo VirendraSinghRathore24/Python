@@ -26,6 +26,16 @@
                       reclaims blocks of memory that no longer are in use is called Garbage Collection.<br></p>
                 <p>In python memory allocation and deallocation happens automatically, user does not worry about memory management.
                 <br>
+                    Why memory release needed:
+                    <li>Forgetting to free your memory. If you don’t free your memory when you’re done using it,
+                  it can result in memory leaks. This can lead to your program using too much memory over time.
+                  For long-running applications, this can cause serious problems.</li><br>
+                  <li>Freeing your memory too soon. The second type of problem consists of freeing
+                      your memory while it’s still in use. This can cause your program to crash
+                      if it tries to access a value in memory that doesn’t exist,
+                      or it can corrupt your data. A variable that refers to memory
+                      that has been freed is called a dangling pointer.</li>
+                  <br>
                 Python uses two strategies for memory allocation: </p>
                   <li>Reference counting</li>
                   <li>Garbage collection</li>
@@ -39,8 +49,8 @@
                       In line 2 its reference count becomes zero as it is dereferenced.
                       So garbage collector deallocates the object<br>
                   </p>
-                    <p>Reference count will not work if there is a reference cycle exist</p>
-                  <p>A reference cycle is created when there is no way the reference count of the object can reach.
+                    <p>Reference count will not work if there is a reference cycle exists.</p>
+                  <p>A reference cycle is created when there is no way the reference count of the object can reach to zero.
                       The easiest way to create a reference cycle is to create an object which refers to itself as in the example below:<br></p>
 
                    <div>

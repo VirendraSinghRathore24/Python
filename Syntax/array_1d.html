@@ -28,6 +28,13 @@
                   <p><strong>Sort array in ascending order : </strong>arr.sort()</p>
                   <p><strong>Sort array in descending order : </strong>arr.sort(reverse=True)</p>
                   <p><strong>Sort array based on specific comparator : </strong>arr.sort(key=lambda a:a[1]) <strong> => based on second value</strong></p>
+                  <p> <strong>Sort based on first value and if both pair first values are equal then sort based on second value:<br></strong>
+                      list = [(2,4), (2,3), (1,8)] <br>
+                      list.sort(key=lambda a: a[1] if a[0] == a[1] else a)<br>
+                      output => [(1, 8), (2, 3), (2, 4)]
+
+                  </p>
+
                    <p><strong>Creating array without element initialize: </strong>arr = [ ]*size <strong> => arr = [ ], it is empty list, accessing any element will throw exception</strong></p>
               </div>
 			</div>

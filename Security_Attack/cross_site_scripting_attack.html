@@ -118,7 +118,12 @@
                   <li>Sanitize Data :</li>
                   <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Removing script tag etc.</p>
                   <li>Use Right response headers</li>
-                  <li>Use Content Security Policy (CSP)</li>
+                  <li>Use Content Security Policy (CSP) :</li>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Content Security Policy prevents major of the attacks, so we have to set header before sending response to user in Javascript or Python:
+                  <br>
+                  <strong>response.setHeader("Content-Security-Policy", "script-src http://localhost:8080")</strong></p>
+
+                  <p>It means it will allow only localhost script files to be executed, and will not allow any script from external site. we can add many more sites here.</p>
               </div>
 			</div>
           </div>

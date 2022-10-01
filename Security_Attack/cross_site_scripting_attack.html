@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <section class="vh-100" style="background-color: #9A616D;">
+         <div class="container fluid">
+          <div class="card" style="border-radius: 15px;">
+              <h3 align="center">Security Vulnerability</h3>
+			  <div class="card-body p-5">
+                  <div class="row">
+                      <div class="col-sm-10">
+                          <h4>Cross Site Scripting Attack:</h4>
+                      </div>
+                      <div class="col-sm-2">
+                          <a href="../index.html">Back</a>
+                      </div>
+                  </div>
+                <hr>
+                  <h5>What is Cross Site Scripting Attack:</h5>
+                  <p>Cross site scripting is an attack in which an attacker injects malicious executable scripts into the code of trusted application or website.
+                    Attackers often initiate an XSS attack by sending a malicious link to a user and enticing the use to click it.
+                    <br><br>
+                    If app or website don't do proper data sanitization, the malicious link executes the attacker code on users system and as a result the attacker can steal the user's active session cookie.</p>
+                    <br>
+                  <h5>Types of Cross site scripting attack:</h5>
+                  <li>Reflected XSS - (Non - Persistent)</li>
+                  <li>Stored XSS - (Persistent)</li>
+                  <li>DOM XSS - (Document Object Model)</li>
+                  <br>
+                  <h5>Reflected XSS :</h5>
+                  <p>Script is executed on client side and not stored on server</p>
+                  <p>Let's take an example: <br>
+                      I have created a web page where user can enter name in text the box as shown below:</p>
+                    <div>
+                        <img src="XSS_1.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+
+                  <p>After click on submit button, it displays name as label:</p>
+                  <div>
+                        <img src="XSS_2.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>As of now, all good.</p>
+                  <p>Now hacker can write some malicious script instead of text inside text box :</p>
+                  <div>
+                        <img src="XSS_3.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>After clicking on submit button, alert popup displayed, because hacker has written script to display popup:</p>
+                  <div>
+                        <img src="XSS_4.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>This is wrong because our application in not expected to show like that. but now you are thinking what is the problem by
+                  displaying popup. let's say hacker has typed : <strong>alert(document.cookie) </strong> inside script tag, and it will return session id, so
+                  using this session id user can do some operations even though he don't know username and password.</p>
+                  <div>
+                        <img src="XSS_5.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>Basically, we can prevent these kinds of issue by adding some code to remove script tag, so it will not execute on browser</p>
+                  <p>Now user can not hack our application because we have handle script tag use case properly but user can type :
+                      <br><strong>img src="x" onMouseOver=alert("Hello")> </strong></p>
+                  <div>
+                        <img src="XSS_6.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>It will display dummy image and once we mouse over on that image it will display popup:</p>
+                  <div>
+                        <img src="XSS_7.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>Note: There will be multiple ways, that hacker can attack your applications, above are just few examples.</p><br>
+                  <h5>Stored XSS :</h5>
+                  <p>Script is stored and executed on the server</p>
+                  <p>Execute every time when malicious site is requested</p>
+                  <p>Here is an application which takes name and some message and store into database:</p>
+                   <div>
+                        <img src="XSS_8.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <div>
+                        <img src="XSS_9.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>Now we enter some malicious script inside message text box, and it will display popup:</p>
+                  <div>
+                        <img src="XSS_10.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>As this data stored into database, so whenever request goes into database and try to fetch this data, it always displays popup.
+                  Also, we can apply other techniques as well to hack the application.</p>
+                  <br>
+                  <h5>DOM XSS :</h5>
+                  <p>Client side attack and script not sent to the server.</p>
+                  <p>Here, we have an application with Dropdown list (no text box here):</p>
+                  <div>
+                        <img src="XSS_11.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>Whenever we select a language from dropdown list, url gets updated :</p>
+                   <div>
+                        <img src="XSS_12.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>Now hacker can type malicious script inside url itself:</p>
+                  <div>
+                        <img src="XSS_13.png" class="img-fluid" alt="Responsive image" width="500" height="300">
+                      </div>
+                  <p>As I have mentioned before, hacker can use many ways to attack the application.</p>
+                  <br>
+                  <h5>How to prevent XSS attack:</h5>
+                  <li>User Input Escaping :</li>
+                  <p> - Escaping character like >, < etc, we can take these characters as input and convert into another character.</p>
+                  <li>Consider all input as threat :</li>
+                  <p> - Handle all the user input carefully.</p>
+                  <li>Data Validation :</li>
+                  <p> - Validate input data like email format etc.</p>
+                  <li>Sanitize Data :</li>
+                  <p> - Removing script tag etc.</p>
+                  <li>Use Right response headers</li>
+                  <li>Use Content Security Policy (CSP)</li>
+              </div>
+			</div>
+          </div>
+</section>
+</body>
+</html>

@@ -53,12 +53,14 @@
                   <div>
                         <img src="XSS_4.png" class="img-fluid" alt="Responsive image" width="500" height="300">
                       </div>
+                  <br>
                   <p>This is wrong because our application in not expected to show like that. but now you are thinking what is the problem by
                   displaying popup. let's say hacker has typed : <strong>alert(document.cookie) </strong> inside script tag, and it will return session id, so
                   using this session id user can do some operations even though he don't know username and password.</p>
                   <div>
                         <img src="XSS_5.png" class="img-fluid" alt="Responsive image" width="500" height="300">
                       </div>
+                  <br>
                   <p>Basically, we can prevent these kinds of issue by adding some code to remove script tag, so it will not execute on browser</p>
                   <p>Now user can not hack our application because we have handle script tag use case properly but user can type :
                       <br><strong>img src="x" onMouseOver=alert("Hello")> </strong></p>
@@ -69,6 +71,7 @@
                   <div>
                         <img src="XSS_7.png" class="img-fluid" alt="Responsive image" width="500" height="300">
                       </div>
+                  <br>
                   <p>Note: There will be multiple ways, that hacker can attack your applications, above are just few examples.</p><br>
                   <h5>Stored XSS :</h5>
                   <p>Script is stored and executed on the server</p>
@@ -80,6 +83,7 @@
                   <div>
                         <img src="XSS_9.png" class="img-fluid" alt="Responsive image" width="500" height="300">
                       </div>
+                  <br>
                   <p>Now we enter some malicious script inside message text box, and it will display popup:</p>
                   <div>
                         <img src="XSS_10.png" class="img-fluid" alt="Responsive image" width="500" height="300">
@@ -97,6 +101,7 @@
                    <div>
                         <img src="XSS_12.png" class="img-fluid" alt="Responsive image" width="500" height="300">
                       </div>
+                  <br>
                   <p>Now hacker can type malicious script inside url itself:</p>
                   <div>
                         <img src="XSS_13.png" class="img-fluid" alt="Responsive image" width="500" height="300">

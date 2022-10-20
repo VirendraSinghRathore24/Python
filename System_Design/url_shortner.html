@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <section class="vh-100" style="background-color: #9A616D;">
+         <div class="container fluid">
+          <div class="card" style="border-radius: 15px;">
+              <h3 align="center">URL Shortner (Tiny Url)</h3>
+			  <div class="card-body p-5">
+                <hr>
+                  <h5>Functional Requirements:</h5>
+                  <li>1. User will provide long url and should get short url back</li>
+                  <li>2. User will access short url link and should be redirected to long url</li>
+                  <li>3. Short link will get expire in some time so user should be able to specify expiration time</li>
+                  <li>4. User can pick alias for short url if he want</li>
+                  <br>
+                  <p>Example: <br>
+                      Long url => https://www.virendrasinghrathore24.com <br>
+                      Short Url => http://tinyurl.com/ang58a</p>
+                  <br>
+                  <h5>Non Functional Requirements:</h5>
+                  <li>1. Highly Available</li>
+                  <li>2. Minimum latency for url redirection</li>
+                  <br>
+                  <h5>Capacity Estimation:</h5>
+                  <p>TODO</p>
+                  <br>
+                  <h5>APIs:</h5>
+                  <li>1. createUrl(dev_key, longurl, custom_alias = None, expire_date = None) and returns shorturl as string format</li>
+                  <li>2. deleteUrl(dev_key, shorturl) and returns success message for deletion</li>
+                  <li>3. accessUrl(dev_key, shorturl)</li>
+                  <br>
+                  <h5>Database Design:</h5>
+                  <p>Few observations: <br> </p>
+                     <li>We need to store billions of records</li>
+                  <li>Each object is small (lees than 1KB)</li>
+                  <li>Ready heavy service</li>
+                  <li>There are no relationship between records - other than storing which user created url</li>
+                  <br>
+                  <h6>Key Generation Service (KGS):</h6>
+                  <p>We can have a standalone Key Generation Service (KGS) that generates random six
+                     letter strings beforehand and stores them in a database (let’s call it key-DB).
+                      Whenever we want to shorten a URL, we will just take one of the already-generated keys and use it.
+                      This approach will make things quite simple and fast. Not only are
+                        we not encoding the URL, but we won’t have to worry about duplications or
+                        collisions. KGS will make sure all the keys inserted into key-DB are unique.
+                  </p>
+                  <p><strong>Can concurrency cause problems? </strong> As soon as a key is used, it should be marked
+                    in the database to ensure it doesn’t get used again. If there are multiple servers
+                    reading keys concurrently, we might get a scenario where two or more servers try to
+                      read the same key from the database. How can we solve this concurrency problem?</p>
+                  <p>Servers can use KGS to read/mark keys in the database. KGS can use two tables to
+                     store keys: one for keys that are not used yet, and one for all the used keys. As soon
+                     as KGS gives keys to one of the servers, it can move them to the used keys table. KGS
+                      can always keep some keys in memory so that it can quickly provide them whenever
+                    a server needs them.</p>
+                  <p><strong>Isn’t KGS a single point of failure? </strong> Yes, it is. To solve this, we can have a standby
+                     replica of KGS. Whenever the primary server dies, the standby server can take over to generate and provide keys.</p>
+            </div>
+			</div>
+          </div>
+</section>
+</body>
+</html>

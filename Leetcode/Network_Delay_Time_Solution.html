@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <style>
+        pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
+    </style>
+</head>
+<body>
+
+    <section class="vh-100" style="background-color: #9A616D;">
+         <div class="container fluid">
+          <div class="card" style="border-radius: 15px;">
+			  <div class="card-body p-5">
+                  <div class="row">
+                      <div class="col-sm-10">
+                          <h4></h4>
+                      </div>
+                      <div class="col-sm-2">
+                          <a href="Graph_Questions_List.html">Back</a>
+                      </div>
+                  </div>
+              <div>
+                  <pre>
+  <code>
+    public int NetworkDelayTime(int[][] times, int n, int k)
+    {
+        Dictionary<int, List<Pair>> adj = new Dictionary<int, List<Pair>>();
+
+        for(int i = 1; i <= n; i++)
+        {
+            adj[i] = new List<Pair>();
+        }
+
+        foreach(var e in times)
+        {
+            int u = e[0];
+            int v = e[1];
+            int t = e[2];
+
+            var list = adj[u];
+            list.Add(new Pair(v, t));
+
+            adj[u] = list;
+        }
+
+        Queue<Pair> queue = new Queue<Pair>();
+        queue.Enqueue(new Pair(k, times[k][2]));
+
+        List<int> visited = new List<int>();
+        visited.Add(k);
+
+        int min = -1;
+        int count = 0;
+        while(queue.Count > 0)
+        {
+            int size = queue.Count;
+
+            count += size;
+            for(int i = 0; i < size; i++)
+            {
+                var q = queue.Dequeue();
+                min = q.t;
+
+                foreach(var e in adj[q.v])
+                {
+                    if(!visited.Contains(e.v))
+                    {
+                        queue.Enqueue(new Pair(e.v, q.t + e.t));
+                        visited.Add(e.v);
+                    }
+                }
+            }
+        }
+
+        return count == n ? min : -1;
+    }
+      public class Pair
+      {
+        public int v;
+        public int t;
+
+        public Pair(int v, int t)
+        {
+            this.v = v;
+            this.t = t;
+        }
+      }
+  </code>
+</pre>
+                      </div>
+            </div>
+			</div>
+          </div>
+</section>
+</body>
+</html>
